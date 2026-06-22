@@ -23,9 +23,9 @@ class format1 {
     
     static fzin_r(a) {
         let zin_r;
-        if      (a<1)          { zin_r= +a.toFixed(3); } 
-        else if (a>=1 && a<5)  { zin_r= +a.toFixed(2); } 
-        else if (a>=5 && a<30) { zin_r= +a.toFixed(1); } 
+        if      (a<1.7)          { zin_r= +a.toFixed(3); } 
+        else if (a>=1.7 && a<12.)  { zin_r= +a.toFixed(2); } 
+        else if (a>=12 && a<70.) { zin_r= +a.toFixed(1); } 
         else                   { zin_r= +a.toFixed(0); }
         return zin_r;
       }
@@ -33,9 +33,10 @@ class format1 {
     static fzin_x(a) {
         let zin_x;
         const abs_a= Math.abs(a);
-        if      (abs_a<2)              { zin_x= +a.toFixed(2); } 
-        else if (abs_a>=2 && abs_a<40) { zin_x= +a.toFixed(1); } 
-        else                           { zin_x= +a.toFixed(0); }
+        if      (abs_a<1)                { zin_x= +a.toFixed(2); } 
+        else if (abs_a>=1 && abs_a<20)   { zin_x= +a.toFixed(2); } 
+        else if (abs_a>=20 && abs_a<100) { zin_x= +a.toFixed(1); } 
+        else                             { zin_x= +a.toFixed(0); }
         return zin_x;
       }
     

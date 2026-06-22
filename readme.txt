@@ -1,5 +1,5 @@
 git branch -M main
-git remote add origin https://github.com/perlov3301/vswr_db_frequences.git
+git remote add origin https://github.com/perlov3301/fn_lr_delta.git
 git push -u origin main
 
 (Z_L = 75 - j25), (Z_0 = 50) vswr=1.77_

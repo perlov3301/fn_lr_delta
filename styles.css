@@ -4,10 +4,7 @@
         border-radius: 5px;
         max-width: 110px;
       }
-td > input {
-  margin-bottom:  0.;
-  font-size: 1.5rem;
-}
+
 
 .inline_inputs {
         display: flex;
@@ -48,13 +45,23 @@ button:active {
         background-color: rgb(3, 3, 94);
         border: 2px solid rgb(119, 119, 239);
       }
-td {
-        padding: 0;
-      }
 table {
   min-width: 110%;
   margin:0 0 0 -1rem;
 }
+td > input {
+  margin-bottom:0;
+  font-size: 1.5rem;
+}
+td {
+        padding: 0;
+        text-align: center;
+        vertical-align: middle;
+      }
+.vertical {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+      } 
 #result_vswr {
   /* font-size: 1.5rem;
   font-weight: bold;
@@ -63,6 +70,23 @@ table {
   /* white-space:pre-wrap; */
   /* display:block; */
   white-space: pre;
+}
+.app_diagram_wrapper {
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background-color: #f4f6f8;
+  padding:9px;
+  border-radius:10px;
+  box-shadow:0 4px 12px rgba(0, 0, 0, 0.1);
+}
+#structure1  {
+  background-color: #ffffff;
+  border: 2px solid #e1e4e8;
+  border-radius: 8px;
+  cursor: pointer;/*interactive*/
+  max-width:100%;
+  height:auto;
 }
 @media (min-width: 400px) {
   div > input[type="number"] {

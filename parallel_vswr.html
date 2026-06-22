@@ -66,7 +66,7 @@
 </head>
 <body>
     <div class="container">
-        <h5>vswr_db_f: fn s1 lr_delta</h5>
+        <h5> fn_lr_delta:s1</h5>
         <form id="vswrForm">
           <div class="row">
             <div class="six columns inline_inputs" >
@@ -97,53 +97,72 @@
                 </tr>
               </thead>
               <tbody id="frequencyTableBody">
-                <!-- Rows will be dynamically added here -->
-                <!-- <tr>
-                  <td><input type="number" id="frequency1" step="any" required> </td>
-                  <td><input type="number" id="load_real1" step="any" required> </td>
-                  <td><input type="number" id="load_imag1" step="any" required> </td>
-                </tr>
-                <tr>
-                  <td><input type="number" id="frequency2" step="any" required> </td>
-                  <td><input type="number" id="load_real2" step="any" required> </td>
-                  <td><input type="number" id="load_imag2" step="any" required> </td>
-                </tr> -->
               </tbody>
             </table>
             <br>
             <br>
-            <p>stage number 1</p>
-            <label >line1 is ended by short circuit; to eliminate it enter impedance 10000 or more</label>
+            <!-- <p>stage number 1</p> -->
+            <label >line1 is ended by short circuit; to eliminate it enter impedance 10000 or more;</label>
             <label>line2 is ended by complex Impedance</label>   
-            <br><br>
+            <br>
+            <div class="app_diagram_wrapper">
+              <canvas id="structure1" width="800" height="260"></canvas>
+            </div>
             <table id="stagesTable">
               <caption>stage1 line parameters</caption>
               <thead>
                 <tr >
-                  <th scope="col">line</th>
-                  <th scope="col">impedance (Ω)</th>
-                  <th scope="col">length (mm)</th>
+                  <th scope="col" rowspan="2" class="vertical">stage</th>
+                  <th scope="col" rowspan="2">line</th>
+                  <th scope="col" colspan="2">impedance (Ω)</th>
+                  <th scope="col" colspan="2">length (mm)</th>
+                </tr>
+                <tr>
+                  <th scope="col">min</th>
+                  <th scope="col">max</th>
+                  <th scope="col">min</th>
+                  <th scope="col">max</th>
                 </tr>
               </thead>
               <tbody id="stagesTableBody">
                 <!-- Rows will be dynamically added here -->
-                <!-- <tr>
+                <tr>
+                  <td rowspan="2">1</td>
                   <td>line1</td>
-                  <td><input type="number" id="line1_R" step="any" required> </td>
-                  <td><input type="number" id="line1_L" step="any" required> </td>
+                  <td><input type="number" id="line11_R" step="any" required> </td>
+                  <td><input type="number" id="line11_Rmax" step="any" required> </td>
+                  <td><input type="number" id="line11_L" step="any" required> </td>
+                  <td><input type="number" id="line11_L_max" step="any" required> </td>
                 </tr>
                 <tr>
                   <td>line2</td>
-                  <td><input type="number" id="line2_R" step="any" required> </td>
-                  <td><input type="number" id="line2_L" step="any" required> </td>
-                </tr> -->
+                  <td><input type="number" id="line12_R" step="any" required> </td>
+                  <td><input type="number" id="line12_Rmax" step="any" required> </td>
+                  <td><input type="number" id="line12_L" step="any" required> </td>
+                  <td><input type="number" id="line12_L_max" step="any" required> </td>
+                </tr>
+                <tr>
+                  <td rowspan="2">2</td>
+                  <td>line3</td>
+                  <td><input type="number" id="line21_R" step="any" required> </td>
+                  <td><input type="number" id="line21_Rmax" step="any" required> </td>
+                  <td><input type="number" id="line21_L" step="any" required> </td>
+                  <td><input type="number" id="line21_L_max" step="any" required> </td>
+                </tr>
+                <tr>
+                  <td>line4</td>
+                  <td><input type="number" id="line22_R" step="any" required> </td>
+                  <td><input type="number" id="line22_Rmax" step="any" required> </td>
+                  <td><input type="number" id="line22_L" step="any" required> </td>
+                  <td><input type="number" id="line22_L_max" step="any" required> </td>
+                </tr>
               </tbody>
             </table>
-            <div class="row">
+            <!-- <div class="row">
               <div class="six columns inline_inputs">
                 <label for="line1_R">line1 impedance (Ω)</label>
-                <input type="number" style="padding-left:0.5rem;"
-                  id="line1_R" 
+                <input type="number" id="line1_R" 
+                  style="padding-left:0.5rem;"
                   step="any" required>
               </div>
               <div class="six columns inline_inputs">
@@ -167,7 +186,7 @@
                   id="line2_L" 
                   step="any" required>
               </div>
-            </div>
+            </div> -->
             <br>
             <button class="button-primary" style="margin-top: .1rem;"
               type="submit">calculate</button>
@@ -197,6 +216,7 @@
     <script type="module" src="timenow.js"></script>
     <script type="module" src="calculateVSWR.js"></script>
     <script type="module" src="parallel_zin.js"></script>
+    <script type="module" src="mycanvas.js"></script>
 
 </body>
 </html>

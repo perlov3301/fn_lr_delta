@@ -23,6 +23,7 @@ document.addEventListener("readystatechange", () => {
     let vswr_array= [];
     let db_array= [];
     let g_array= [];
+    
     const tbody = document.getElementById("frequencyTableBody");
     tbody.replaceChildren("");
     const form= document.getElementById("vswrForm");
@@ -39,22 +40,11 @@ document.addEventListener("readystatechange", () => {
     inputIds_f= table_ids.id_array_f;
     inputIds_ZL2_real= table_ids.id_array_r;
     inputIds_ZL2_imag= table_ids.id_array_x;
-    // inputIds_f= ["frequency1", "frequency2", ];
-    // inputIds_ZL2_real= ["load_real1", "load_real2", ];
-    // inputIds_ZL2_imag= ["load_imag1", "load_imag2", ];
-    //0   frequency1   load_real1   load_imag1
-    //1   frequency2   load_real2   load_imag2
-    // const frequency1Input= document.getElementById(inputIds_f[0]);
-    // const load_real1= document.getElementById(inputIds_ZL2_real[0]);
-    // const load_imag1= document.getElementById(inputIds_ZL2_imag[0]);
-    // const frequency2Input= document.getElementById(inputIds_f[1]);
-    // const load_real2= document.getElementById(inputIds_ZL2_real[1]);
-    // const load_imag2= document.getElementById(inputIds_ZL2_imag[1]);
 
-    const line1_R= document.getElementById("line1_R");
-    const line2_R= document.getElementById("line2_R");
-    const line1_L= document.getElementById("line1_L");
-    const line2_L= document.getElementById("line2_L");
+    const line1_R= document.getElementById("line11_R");
+    const line1_L= document.getElementById("line11_L");
+    const line2_R= document.getElementById("line12_R");
+    const line2_L= document.getElementById("line12_L");
     
     // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
@@ -113,7 +103,7 @@ document.addEventListener("readystatechange", () => {
         console.log("updateResult; Z01:", Z01, " length1:", length1);
         console.log("updateResult; Z02:", Z02, " length2:", length2);
         result_vswr.textContent= "";
-        
+        explanationArea.value= "";
         for (let i=0; i< f_n; i++) {
           const frequency= f_array[i];
           const ZL2_real= ZL2_real_array[i];
@@ -136,36 +126,14 @@ document.addEventListener("readystatechange", () => {
           g_array[i]=     format1.fg(vswrData.gamma);
           Zin_r_array[i]= format1.fzin_r(vswrData.Zin_parallel.real);
           Zin_x_array[i]= format1.fzin_x(vswrData.Zin_parallel.imag);
-        // if (vswrData.vswr < 2)                         { vswr_array[i]= +vswrData.vswr.toFixed(3); } 
-          // else if (vswrData.vswr>=2 && vswrData.vswr<6)  { vswr_array[i]= +vswrData.vswr.toFixed(2); }
-          // else if (vswrData.vswr>=6 && vswrData.vswr<24) { vswr_array[i]= +vswrData.vswr.toFixed(1); }
-          // else                                           { vswr_array[i]= +vswrData.vswr.toFixed(0); }
-          
-          // if (vswrData.db > -1.)                         { db_array[i]= +vswrData.db.toFixed(3); } 
-          // else if (vswrData.db<=-1. && vswrData.db>-5.)  { db_array[i]= +vswrData.db.toFixed(2); }
-          // else if (vswrData.db<=-5. && vswrData.db>-21.) { db_array[i]= +vswrData.db.toFixed(1); }
-          // else                                           { db_array[i]= +vswrData.db.toFixed(0); }
-          // const zin_r = vswrData.Zin_parallel.real;
-          // if (zin_r<1) {
-          //     Zin_parallel_real_array[i]= +vswrData.Zin_parallel.real.toFixed(3);
-          //   } else if (zin_r>=1 && zin_r<5) {
-          //     Zin_parallel_real_array[i]= +vswrData.Zin_parallel.real.toFixed(2);
-          //   } else if (zin_r>=5 && zin_r<30) {
-          //     Zin_parallel_real_array[i]= +vswrData.Zin_parallel.real.toFixed(1);
-          //   } else { Zin_parallel_real_array[i]= +vswrData.Zin_parallel.real.toFixed(0); }
-          // const zin_x = Math.abs(vswrData.Zin_parallel.imag);
-          // if (zin_x<2) { Zin_parallel_imag_array[i]= +vswrData.Zin_parallel.imag.toFixed(2); }
-          // else if (zin_x>=2 && zin_x<40) { Zin_parallel_imag_array[i]= +vswrData.Zin_parallel.imag.toFixed(1); }
-          // else { Zin_parallel_imag_array[i]= +vswrData.Zin_parallel.imag.toFixed(0); }
-
-          // g_array[i]= +vswrData.gamma.toFixed(4);
 
           const spaces = " ".repeat(3);
           result_vswr.textContent+= 
-          `f= ${frequency}MHz${spaces}vswr: ${vswr_array[i]}`+ 
-             `(|Γ| = ${g_array[i]}) db= ${db_array[i]} dB \n`;
+          `f= ${frequency}MHz${spaces}vswr: ${vswr_array[i]}${spaces}`+ 
+             ` db= ${db_array[i]}dB${spaces}(|Γ| = ${g_array[i]})\n`;
           console.log("updateResult; vswr:", vswr_array[i]," |Γ|:",g_array[i]," db:", db_array[i]);
-          
+          explanationArea.value+= `f= ${frequency}MHz${spaces}Zin_r=${Zin_r_array[i]}` +
+            `${spaces}Zin_x=${Zin_x_array[i]} Ω\n`;
       }
         console.log("updateResult;f:",f_array," vswr_array:", vswr_array, " db_array:", db_array);
 
