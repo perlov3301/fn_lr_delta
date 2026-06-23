@@ -76,13 +76,7 @@ document.addEventListener("readystatechange", () => {
           +value.toFixed(3): "NaN";
     }
 //lines array_r_min[nst, nrmin]=
-    let n_stages= 3;
-    const stages_tbody = document.getElementById("stagesTableBody");
-    // stages_tbody.replaceChildren("");
-    const stages_n_input= document.getElementById("n_stages");
-    stages_n_input.addEventListener("input", ()=>{
-      stages_tbody.replaceChildren(""); });
-    n_stages= parseInt(stages_n_input.value,10);
+    const n_stages= 3;
     const n_l= 2;
     let id_rmin=[];
     let id_rmax=[];

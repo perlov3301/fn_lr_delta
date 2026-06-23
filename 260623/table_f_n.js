@@ -1,6 +1,6 @@
 class table_f_n {
   static addRows(
-    id, // "frequencyTableBody"
+    id,
     f_n,
     base_id_f,
     base_id_r,
