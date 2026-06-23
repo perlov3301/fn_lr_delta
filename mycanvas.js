@@ -80,42 +80,4 @@ document.addEventListener("readystatechange",()=> {
         );
     }
     renderDraw1();
-    
-    const canvas2= document.getElementById("structure2");
-    const ctx2= canvas1.getContext("2d");
-    function renderDraw2() {// clear and draw
-        ctx1.clearRect(0,0, canvas2.widht, canvas2.height);
-        ctx1.translate(0,-360);
-    //  outlined line
-        fline(ctx2, 60, 420, 710, 420);
-        fline(ctx2, 60, 420, 60, 485);
-        z_vert(ctx2, 60, 485);
-        fline(ctx2, 60, 515, 60, 575);
-        base(60, 575);
-        fline(ctx2, 710, 420, 710, 450);
-        z_vert(ctx2, 710, 450);
-        fline(ctx2, 710, 480, 710, 515);
-        z_vert(ctx2, 710, 516);
-        fline(ctx2, 710, 545, 710, 575);
-        base(710, 575);
-        rotatedText(ctx2, "generator R", 
-            40, // x local origin
-            510, //y local origin
-            -90,  // degrees
-            "12px" // font
-       );
-        rotatedText(ctx2, "R_load", // text
-            740, // x local origin
-            464, //y local origin
-            -90,  // degrees
-            "12px" // font
-        );
-        rotatedText(ctx2, "j*X_load", // text
-            740, // x local origin
-            533, //y local origin
-            -90,  // degrees
-            "12px" // font
-        );
-    }
-    renderDraw2();
 });

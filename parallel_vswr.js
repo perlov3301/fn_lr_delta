@@ -41,10 +41,7 @@ document.addEventListener("readystatechange", () => {
     inputIds_ZL2_real= table_ids.id_array_r;
     inputIds_ZL2_imag= table_ids.id_array_x;
 
-    const line1_R= document.getElementById("line11_R");
-    const line1_L= document.getElementById("line11_L");
-    const line2_R= document.getElementById("line12_R");
-    const line2_L= document.getElementById("line12_L");
+
     
     // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
@@ -78,7 +75,46 @@ document.addEventListener("readystatechange", () => {
       return Number.isFinite(value) ? 
           +value.toFixed(3): "NaN";
     }
-
+//lines array_r_min[nst, nrmin]=
+    const n_stages= 3;
+    const n_l= 2;
+    let id_rmin=[];
+    let id_rmax=[];
+    let id_lmin=[];
+    let id_lmax=[];
+    let r_min= [];
+    let r_max= [];
+    let l_min= [];
+    let l_max= [];
+    r_min = Array.from({ length: n_stages }, ()=> Array(n_l).fill(0));
+    console.log("array r_min:", r_min);
+    for (let i= 0; i< n_stages; i++) {
+      id_rmin[i]= [];
+      id_rmax[i]= [];
+      id_lmin[i]= [];
+      id_lmax[i]= [];
+      r_min[i]= [];
+      r_max[i]= [];
+      l_min[i]= [];
+      l_max[i]= [];
+      for (let j=0; j< 2; j++) {
+        id_rmin[i][j]="Rmin"+(i+1).toString()+(j+1).toString();
+        id_rmax[i][j]="Rmax"+(i+1).toString()+(j+1).toString();
+        id_lmin[i][j]="Lmin"+(i+1).toString()+(j+1).toString();
+        id_lmax[i][j]="Lmax"+(i+1).toString()+(j+1).toString();
+        r_min[i][j]= 20;
+        r_max[i][j]= 200;
+        l_min[i][j]= 20;
+        l_max[i][j]= 200;
+      }
+    }
+    
+    console.log("id_rmin11",id_rmin[0][0]," id_rmin12=",id_rmin[0][1]);
+    console.log("id_lmin11",id_lmin[0][0]," id_lmin12=",id_lmin[0][1]);
+    const line1_R= document.getElementById(id_rmin[0][0]);
+    const line1_L= document.getElementById(id_lmin[0][0]);
+    const line2_R= document.getElementById(id_rmin[0][1]);
+    const line2_L= document.getElementById(id_lmin[0][1]);
     
     function updateResult() {
     console.clear();
@@ -158,10 +194,10 @@ document.addEventListener("readystatechange", () => {
     // frequency1Input.addEventListener("input", markModified);
     // load_real1.addEventListener("input", markModified);
     // load_imag1.addEventListener("input", markModified);
-    line1_R.addEventListener("input", markModified);
-    line1_L.addEventListener("input", markModified);
-    line2_R.addEventListener("input", markModified);
-    line2_L.addEventListener("input", markModified);
+    // line1_R.addEventListener("input", markModified);
+    // line1_L.addEventListener("input", markModified);
+    // line2_R.addEventListener("input", markModified);
+    // line2_L.addEventListener("input", markModified);
 
 
     form.addEventListener("submit", (event) => {

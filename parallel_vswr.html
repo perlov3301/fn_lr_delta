@@ -60,6 +60,16 @@
         padding: 4px;
         /* height: 100% */
       }
+
+td  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+td  input[type=number] {
+  -moz-appearance: textfield;
+  /* appearance:; */
+}
       
     </style>
     <!-- <link rel="stylesheet" href="styles.css"> -->
@@ -112,8 +122,8 @@
               <caption>stage1 line parameters</caption>
               <thead>
                 <tr >
-                  <th scope="col" rowspan="2" class="vertical">stage</th>
-                  <th scope="col" rowspan="2">line</th>
+                  <th scope="col" rowspan="2" class="vertical">stages</th>
+                  <th scope="col" rowspan="2" class="vertical">lines</th>
                   <th scope="col" colspan="2">impedance (Ω)</th>
                   <th scope="col" colspan="2">length (mm)</th>
                 </tr>
@@ -128,33 +138,41 @@
                 <!-- Rows will be dynamically added here -->
                 <tr>
                   <td rowspan="2">1</td>
-                  <td>line1</td>
-                  <td><input type="number" id="line11_R" step="any" required> </td>
-                  <td><input type="number" id="line11_Rmax" step="any" required> </td>
-                  <td><input type="number" id="line11_L" step="any" required> </td>
-                  <td><input type="number" id="line11_L_max" step="any" required> </td>
+                  <td>1</td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Rmin11" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Rmax11" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Lmin11" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Lmax11" step="any" required> </td>
                 </tr>
                 <tr>
-                  <td>line2</td>
-                  <td><input type="number" id="line12_R" step="any" required> </td>
-                  <td><input type="number" id="line12_Rmax" step="any" required> </td>
-                  <td><input type="number" id="line12_L" step="any" required> </td>
-                  <td><input type="number" id="line12_L_max" step="any" required> </td>
+                  <td>2</td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Rmin12" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Rmax12" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Lmin12" step="any" required> </td>
+                  <td><input type="number" onwheel="this.blur()"
+                    id="Lmax12" step="any" required> </td>
                 </tr>
                 <tr>
                   <td rowspan="2">2</td>
-                  <td>line3</td>
-                  <td><input type="number" id="line21_R" step="any" required> </td>
-                  <td><input type="number" id="line21_Rmax" step="any" required> </td>
-                  <td><input type="number" id="line21_L" step="any" required> </td>
-                  <td><input type="number" id="line21_L_max" step="any" required> </td>
+                  <td>1</td>
+                  <td><input type="number" id="Rmin21" step="any" required> </td>
+                  <td><input type="number" id="Rmax21" step="any" required> </td>
+                  <td><input type="number" id="Lmin21" step="any" required> </td>
+                  <td><input type="number" id="Lmax21" step="any" required> </td>
                 </tr>
                 <tr>
-                  <td>line4</td>
-                  <td><input type="number" id="line22_R" step="any" required> </td>
-                  <td><input type="number" id="line22_Rmax" step="any" required> </td>
-                  <td><input type="number" id="line22_L" step="any" required> </td>
-                  <td><input type="number" id="line22_L_max" step="any" required> </td>
+                  <td>2</td>
+                  <td><input type="number" id="Rmin22" step="any" required> </td>
+                  <td><input type="number" id="Rmax22" step="any" required> </td>
+                  <td><input type="number" id="Lmin22" step="any" required> </td>
+                  <td><input type="number" id="Lmax22" step="any" required> </td>
                 </tr>
               </tbody>
             </table>

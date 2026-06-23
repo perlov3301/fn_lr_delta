@@ -19,8 +19,9 @@ class table_f_n {
       id_array_r.push(`${base_id_r}${i+1}`);
       id_array_x.push(`${base_id_x}${i+1}`);
       console.log(i," ",id_array_f[i]," ", id_array_r[i]," ", id_array_x[i]);
+    // avoid altering number while scrolling
       const rowHTML= `<tr>
-        <td><input type="number" 
+        <td><input type="number" onwheel="this.blur()"
           id="${id_array_f[i]}" value="frequence"  step="any" />
         </td>
         <td><input type="number" 
