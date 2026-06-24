@@ -50,26 +50,7 @@ document.addEventListener("readystatechange", () => {
     statusIndicator.replaceChildren("ready");
     let currentState= "ready";
     function setState(state) {
-      // currentState= state;
-      // let captions=[];
-      // captions[0]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // captions[1]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // statusIndicator.textContent= captions[state] || state;
-      // statusIndicator.className= `status-indicator ${state}`;
+      
     }
     function formatNumber(value) {
       return Number.isFinite(value) ? 
@@ -114,9 +95,22 @@ document.addEventListener("readystatechange", () => {
         l_max[i][j]= 200;
       }
     }
-    
+    // frequency_n_input.addEventListener("input", ()=>{
+    //   tbody.replaceChildren(""); });
+    // const f_n= parseInt(frequency_n_input.value,10);
+    // const table_ids=table_f_n.addRows("frequencyTableBody", 
+    //       f_n, 
+    //       "frequency", 
+    //       "load_real", 
+    //       "load_imag");
+    // inputIds_f= table_ids.id_array_f;
+    // inputIds_ZL2_real= table_ids.id_array_r;
+    // inputIds_ZL2_imag= table_ids.id_array_x;
+
     console.log("id_rmin11",id_rmin[0][0]," id_rmin12=",id_rmin[0][1]);
     console.log("id_lmin11",id_lmin[0][0]," id_lmin12=",id_lmin[0][1]);
+    const stage_button = document.getElementById("stages_table");
+    stage_button.addEventListener("click", )
     const line1_R= document.getElementById(id_rmin[0][0]);
     const line1_L= document.getElementById(id_lmin[0][0]);
     const line2_R= document.getElementById(id_rmin[0][1]);
@@ -196,16 +190,6 @@ document.addEventListener("readystatechange", () => {
         
     }
 
-    // generatorR.addEventListener("input", markModified);
-    // frequency1Input.addEventListener("input", markModified);
-    // load_real1.addEventListener("input", markModified);
-    // load_imag1.addEventListener("input", markModified);
-    // line1_R.addEventListener("input", markModified);
-    // line1_L.addEventListener("input", markModified);
-    // line2_R.addEventListener("input", markModified);
-    // line2_L.addEventListener("input", markModified);
-
-
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       updateResult();
@@ -213,4 +197,31 @@ document.addEventListener("readystatechange", () => {
 
     setState(`time now: ${timenow()}; ready for input `);
 });
-
+// currentState= state;
+      // let captions=[];
+      // captions[0]= {
+      //   ready: "ready for input",
+      //   modified: "Input changed",
+      //   submitted: "Calculated",
+      //   calculatedZin: "Zin was calculated",
+      //   error_calculating: "error calculating Zin or VSWR",
+      //   calculatedVSWR: "VSWR was calculated",
+      // };
+      // captions[1]= {
+      //   ready: "ready for input",
+      //   modified: "Input changed",
+      //   submitted: "Calculated",
+      //   calculatedZin: "Zin was calculated",
+      //   error_calculating: "error calculating Zin or VSWR",
+      //   calculatedVSWR: "VSWR was calculated",
+      // };
+      // statusIndicator.textContent= captions[state] || state;
+      // statusIndicator.className= `status-indicator ${state}`;
+// generatorR.addEventListener("input", markModified);
+    // frequency1Input.addEventListener("input", markModified);
+    // load_real1.addEventListener("input", markModified);
+    // load_imag1.addEventListener("input", markModified);
+    // line1_R.addEventListener("input", markModified);
+    // line1_L.addEventListener("input", markModified);
+    // line2_R.addEventListener("input", markModified);
+    // line2_L.addEventListener("input", markModified);
