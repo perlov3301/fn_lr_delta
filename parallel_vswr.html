@@ -61,25 +61,15 @@
         /* height: 100% */
       }
 
-      td  input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-      td  input[type=number] {
-        -moz-appearance: textfield;
-      }
-      /* Chrome, Safari, Edge, Opera */
-      input::-webkit-outer-spin-button,
-      input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
-
-      /* Firefox */
-      input[type=number] {
-        -moz-appearance: textfield;
-      }
+td  input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+td  input[type=number] {
+  -moz-appearance: textfield;
+  /* appearance:; */
+}
       
     </style>
     <!-- <link rel="stylesheet" href="styles.css"> -->
@@ -91,21 +81,22 @@
           <div class="row">
             <div class="six columns inline_inputs" >
               <label for="generator" style="font-weight: bold;">generator Impedance (Ω):</label>
-              <input type="number" onwheel="this.blur()"
+              <input type="number" 
                 id="generatorR" 
                 step="any" required>
             </div>
             <div class="six columns inline_inputs">
               <label for="frequency_n" style="font-weight: bold;">number of frequencies</label>
-              <input type="number" onwheel="this.blur()"
+              <input type="number" 
                 min="1" 
                 id="frequency_n" 
                 step="1" required >
             </div>
           </div>
             <br>
-          <button onclick="location.reload()"  class="button-primary">
-              load the Table
+          <button 
+            id="button_f_n_table"
+            class="button-primary">load the Table
           </button>
             <table id="mytable">
               <caption>frequency and load impedance</caption>
@@ -128,28 +119,17 @@
             <div class="app_diagram_wrapper">
               <canvas id="structure1" width="800" height="260"></canvas>
             </div>
-            <br>
-            <!-- <div class="inline_inputs">
-              <label for="n_stages" style="font-weight: bold;">number of stages</label>
-              <input type="number" onwheel="this.blur()" value="1"
-                min="1" 
-                id="n_stages" 
-                step="1" required >
-            </div> -->
             <div class="row">
               <div class="six columns inline_inputs">
-                <label for="n_stages" style="font-weight: bold;">number of stages</label>
-              <input type="number" onwheel="this.blur()" value="1"
-                min="1" 
-                id="n_stages" 
-                step="1" required >
+                <label for="table_n" style="font-weight:bold;">t_n</label>
+                <input type="number" 
+                    min="1" max="10"
+                    id="table_n"
+                    step="1" required >
               </div>
               <div class="six columns inline_inputs">
-               
-                <button id="stages_table"
-                  class="button-primary">
-                  load Stages Table
-                </button>
+                <button id="" class="button-primary">load stages</button>
+                  
               </div>
             </div>
             <table id="stagesTable">
@@ -193,7 +173,7 @@
                   <td><input type="number" onwheel="this.blur()"
                     id="Lmax12" step="any" required> </td>
                 </tr>
-                <!-- <tr>
+                <tr>
                   <td rowspan="2">2</td>
                   <td>1</td>
                   <td><input type="number" id="Rmin21" step="any" required> </td>
@@ -207,7 +187,7 @@
                   <td><input type="number" id="Rmax22" step="any" required> </td>
                   <td><input type="number" id="Lmin22" step="any" required> </td>
                   <td><input type="number" id="Lmax22" step="any" required> </td>
-                </tr> -->
+                </tr>
               </tbody>
             </table>
             <!-- <div class="row">
@@ -272,8 +252,5 @@
 
 </body>
 </html>
- <!-- <p>You can change some input and re<span style="font-weight: bold;">calculate Zin </span>or reload entire page</p>
-          <label for="breload">  </label>
-          <button type="button" id="breload"
-            onclick="window.location.reload()" >reload entire page</button> -->
+ 
             

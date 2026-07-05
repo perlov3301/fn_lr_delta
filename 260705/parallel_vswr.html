@@ -83,19 +83,20 @@ td  input[type=number] {
               <label for="generator" style="font-weight: bold;">generator Impedance (Ω):</label>
               <input type="number" 
                 id="generatorR" 
-                step="0.01" required>
+                step="any" required>
             </div>
             <div class="six columns inline_inputs">
               <label for="frequency_n" style="font-weight: bold;">number of frequencies</label>
               <input type="number" 
-                min="1" max="20"
+                min="1" 
                 id="frequency_n" 
                 step="1" required >
             </div>
           </div>
             <br>
-          <button onclick="location.reload()"  class="button-primary">
-              load the Table
+          <button 
+            id="button_f_n_table"
+            class="button-primary">load the Table
           </button>
             <table id="mytable">
               <caption>frequency and load impedance</caption>
@@ -117,6 +118,19 @@ td  input[type=number] {
             <br>
             <div class="app_diagram_wrapper">
               <canvas id="structure1" width="800" height="260"></canvas>
+            </div>
+            <div class="row">
+              <div class="six columns inline_inputs">
+                <label for="table_n" style="font-weight:bold;">t_n</label>
+                <input type="number" 
+                    min="1" max="10"
+                    id="table_n"
+                    step="1" required >
+              </div>
+              <div class="six columns inline_inputs">
+                <button id="" class="button-primary">load stages</button>
+                  
+              </div>
             </div>
             <table id="stagesTable">
               <caption>stage1 line parameters</caption>
@@ -238,8 +252,5 @@ td  input[type=number] {
 
 </body>
 </html>
- <!-- <p>You can change some input and re<span style="font-weight: bold;">calculate Zin </span>or reload entire page</p>
-          <label for="breload">  </label>
-          <button type="button" id="breload"
-            onclick="window.location.reload()" >reload entire page</button> -->
+ 
             

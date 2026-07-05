@@ -30,18 +30,24 @@ document.addEventListener("readystatechange", () => {
     const generatorR= document.getElementById("generatorR");
     const frequency_n_input= document.getElementById("frequency_n");
     frequency_n_input.addEventListener("input", ()=>{
-      tbody.replaceChildren(""); });
-    const f_n= parseInt(frequency_n_input.value,10);
-    const table_ids=table_f_n.addRows("frequencyTableBody", 
+      tbody.replaceChildren(""); 
+    });
+    let f_n=1;
+    const button_f_n= document.getElementById("button_f_n_table");
+    button_f_n.addEventListener("click", ()=>{
+      tbody.replaceChildren(""); 
+      f_n= parseInt(frequency_n_input.value,10);
+      console.log("button_f was clicked; f_n=", f_n);
+      const table_ids=table_f_n.addRows(
+          "frequencyTableBody", 
           f_n, 
           "frequency", 
           "load_real", 
           "load_imag");
-    inputIds_f= table_ids.id_array_f;
-    inputIds_ZL2_real= table_ids.id_array_r;
-    inputIds_ZL2_imag= table_ids.id_array_x;
-
-
+      inputIds_f= table_ids.id_array_f;
+      inputIds_ZL2_real= table_ids.id_array_r;
+      inputIds_ZL2_imag= table_ids.id_array_x;
+    });
     
     // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
@@ -50,20 +56,33 @@ document.addEventListener("readystatechange", () => {
     statusIndicator.replaceChildren("ready");
     let currentState= "ready";
     function setState(state) {
-      
+      // currentState= state;
+      // let captions=[];
+      // captions[0]= {
+      //   ready: "ready for input",
+      //   modified: "Input changed",
+      //   submitted: "Calculated",
+      //   calculatedZin: "Zin was calculated",
+      //   error_calculating: "error calculating Zin or VSWR",
+      //   calculatedVSWR: "VSWR was calculated",
+      // };
+      // captions[1]= {
+      //   ready: "ready for input",
+      //   modified: "Input changed",
+      //   submitted: "Calculated",
+      //   calculatedZin: "Zin was calculated",
+      //   error_calculating: "error calculating Zin or VSWR",
+      //   calculatedVSWR: "VSWR was calculated",
+      // };
+      // statusIndicator.textContent= captions[state] || state;
+      // statusIndicator.className= `status-indicator ${state}`;
     }
     function formatNumber(value) {
       return Number.isFinite(value) ? 
           +value.toFixed(3): "NaN";
     }
 //lines array_r_min[nst, nrmin]=
-    let n_stages= 3;
-    const stages_tbody = document.getElementById("stagesTableBody");
-    // stages_tbody.replaceChildren("");
-    const stages_n_input= document.getElementById("n_stages");
-    stages_n_input.addEventListener("input", ()=>{
-      stages_tbody.replaceChildren(""); });
-    n_stages= parseInt(stages_n_input.value,10);
+    const n_stages= 3;
     const n_l= 2;
     let id_rmin=[];
     let id_rmax=[];
@@ -95,22 +114,9 @@ document.addEventListener("readystatechange", () => {
         l_max[i][j]= 200;
       }
     }
-    // frequency_n_input.addEventListener("input", ()=>{
-    //   tbody.replaceChildren(""); });
-    // const f_n= parseInt(frequency_n_input.value,10);
-    // const table_ids=table_f_n.addRows("frequencyTableBody", 
-    //       f_n, 
-    //       "frequency", 
-    //       "load_real", 
-    //       "load_imag");
-    // inputIds_f= table_ids.id_array_f;
-    // inputIds_ZL2_real= table_ids.id_array_r;
-    // inputIds_ZL2_imag= table_ids.id_array_x;
-
+    
     console.log("id_rmin11",id_rmin[0][0]," id_rmin12=",id_rmin[0][1]);
     console.log("id_lmin11",id_lmin[0][0]," id_lmin12=",id_lmin[0][1]);
-    const stage_button = document.getElementById("stages_table");
-    stage_button.addEventListener("click", )
     const line1_R= document.getElementById(id_rmin[0][0]);
     const line1_L= document.getElementById(id_lmin[0][0]);
     const line2_R= document.getElementById(id_rmin[0][1]);
@@ -190,34 +196,7 @@ document.addEventListener("readystatechange", () => {
         
     }
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      updateResult();
-    });
-
-    setState(`time now: ${timenow()}; ready for input `);
-});
-// currentState= state;
-      // let captions=[];
-      // captions[0]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // captions[1]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // statusIndicator.textContent= captions[state] || state;
-      // statusIndicator.className= `status-indicator ${state}`;
-// generatorR.addEventListener("input", markModified);
+    // generatorR.addEventListener("input", markModified);
     // frequency1Input.addEventListener("input", markModified);
     // load_real1.addEventListener("input", markModified);
     // load_imag1.addEventListener("input", markModified);
@@ -225,3 +204,13 @@ document.addEventListener("readystatechange", () => {
     // line1_L.addEventListener("input", markModified);
     // line2_R.addEventListener("input", markModified);
     // line2_L.addEventListener("input", markModified);
+
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      updateResult();
+    });
+
+    setState(`time now: ${timenow()}; ready for input `);
+});
+

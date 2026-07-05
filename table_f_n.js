@@ -1,11 +1,12 @@
 class table_f_n {
   static addRows(
-    id, // "frequencyTableBody"
+    id,
     f_n,
     base_id_f,
     base_id_r,
     base_id_x,
   ) {
+    console.log("addRows to id=", id, " f_n=", f_n);
     const tbody= document.getElementById(id);
     // tbody.replaceChildren("");
     let id_array_f = [];
@@ -18,7 +19,7 @@ class table_f_n {
       id_array_f.push(`${base_id_f}${i+1}`);
       id_array_r.push(`${base_id_r}${i+1}`);
       id_array_x.push(`${base_id_x}${i+1}`);
-      console.log(i," ",id_array_f[i]," ", id_array_r[i]," ", id_array_x[i]);
+      console.log(i,id_array_f[i], id_array_r[i], id_array_x[i]);
     // avoid altering number while scrolling
       const rowHTML= `<tr>
         <td><input type="number" onwheel="this.blur()"

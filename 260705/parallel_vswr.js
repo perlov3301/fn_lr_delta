@@ -30,18 +30,24 @@ document.addEventListener("readystatechange", () => {
     const generatorR= document.getElementById("generatorR");
     const frequency_n_input= document.getElementById("frequency_n");
     frequency_n_input.addEventListener("input", ()=>{
-      tbody.replaceChildren(""); });
-    const f_n= parseInt(frequency_n_input.value,10);
-    const table_ids=table_f_n.addRows("frequencyTableBody", 
+      tbody.replaceChildren(""); 
+    });
+    let f_n=1;
+    const button_f_n= document.getElementById("button_f_n_table");
+    button_f_n.addEventListener("click", ()=>{
+      tbody.replaceChildren(""); 
+      f_n= parseInt(frequency_n_input.value,10);
+      console.log("button_f was clicked; f_n=", f_n);
+      const table_ids=table_f_n.addRows(
+          "frequencyTableBody", 
           f_n, 
           "frequency", 
           "load_real", 
           "load_imag");
-    inputIds_f= table_ids.id_array_f;
-    inputIds_ZL2_real= table_ids.id_array_r;
-    inputIds_ZL2_imag= table_ids.id_array_x;
-
-
+      inputIds_f= table_ids.id_array_f;
+      inputIds_ZL2_real= table_ids.id_array_r;
+      inputIds_ZL2_imag= table_ids.id_array_x;
+    });
     
     // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
