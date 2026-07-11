@@ -2,54 +2,62 @@ class table_stg_n {
     static addRows(
       id="stagesTableBody",
       stg_n,
-      // base_id_f,
-      // base_id_r,
-      // base_id_x,
+      base_rmin,
+      base_rmax,
+      base_lmin,
+      base_lmax
     ) {
-      // const tbody= document.getElementById(id);
-      // let id_array_f = [];
-      // let id_array_r = [];
-      // let id_array_x = [];
-      // for (let i=0; i< f_n; i++) {
-      //   id_array_f.push(`${base_id_f}${i+1}`);
-      //   id_array_r.push(`${base_id_r}${i+1}`);
-      //   id_array_x.push(`${base_id_x}${i+1}`);
-      //   console.log(i," ",id_array_f[i]," ", id_array_r[i]," ", id_array_x[i]);
-      // // avoid altering number while scrolling
-        const rowHTML= `<tr>
+      const tbody= document.getElementById(id);
+ 
+        const rowHTML= `
+        <tr>
+          <td rowspan="2">1</td>
+          <td>1</td>
           <td><input type="number" onwheel="this.blur()"
-            id="${id_array_f[i]}" value="frequence"  step="any" />
-          </td>
-          <td><input type="number" 
-            id="${id_array_r[i]}" value="real of ZL"  step="any" />
-          </td>
-          <td><input type="number" 
-            id="${id_array_x[i]}" value="imag of ZL"  step="any" />
-          </td>
-        </tr>`;
+            id="Rmin11" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Rmax11" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Lmin11" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Lmax11" step="any" required> </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Rmin12" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Rmax12" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Lmin12" step="any" required> </td>
+          <td><input type="number" onwheel="this.blur()"
+            id="Lmax12" step="any" required> </td>
+        </tr>
+        <tr>
+          <td rowspan="2">2</td>
+          <td>1</td>
+          <td><input type="number" id="Rmin21" step="any" required> </td>
+          <td><input type="number" id="Rmax21" step="any" required> </td>
+          <td><input type="number" id="Lmin21" step="any" required> </td>
+          <td><input type="number" id="Lmax21" step="any" required> </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><input type="number" id="Rmin22" step="any" required> </td>
+          <td><input type="number" id="Rmax22" step="any" required> </td>
+          <td><input type="number" id="Lmin22" step="any" required> </td>
+          <td><input type="number" id="Lmax22" step="any" required> </td>
+        </tr>
+        `;
         tbody.insertAdjacentHTML('beforeend', rowHTML);
-          return {
-          id_array_f:id_array_f,
-          id_array_r:id_array_r,
-          id_array_x:id_array_x,
-      };
+          return { };
       }
-      // console.log(f_n," ",id_array_f," ", id_array_r," ", id_array_x);
-      // console.log(id_array_f," ", id_array_r," ", id_array_x);
-      // for (let i=0; i< f_n; i++) {
-      //   const newRow = table.insertRow(-1);
-      //   const cell1 = newRow.insertCell(0);
-      //   const cell2 = newRow.insertCell(1);
-      //   const cell3 = newRow.insertCell(2);
-      //   cell1.innerHTML = `<input type="number" id="${id_array_f[i]}" value="100" step="0.01" />`;
-      //   cell2.innerHTML = `<input type="number" id="${id_array_r[i]}" value="50" step="0.01" />`;
-      //   cell3.innerHTML = `<input type="number" id="${id_array_x[i]}" value="0" step="0.01" />`;
-      // }
+
 }
     
   
   
-  export { table_f_n };
+  export { table_stg_n };
   
   // table.insertRow(-1);
   //     const cell1 = newRow.insertCell(0);
