@@ -5,7 +5,6 @@ import { f1 } from './vswr1_db1.js'
 import { table_f_n }   from './table_f_n.js';
 import { format1 } from './format1.js';
 import { table_stg_n } from './table_st_n.js';
-import  { mutation } from './mutation1.js';
 document.addEventListener("readystatechange", () => {
     console.log("document.readyState:", document.readyState);
     const explanationArea= document.getElementById("explanation");
@@ -26,7 +25,7 @@ document.addEventListener("readystatechange", () => {
         // }
       }
     });
-    const vf=1; // Eeff =1 
+    const vf=1;
     // let vf=1;
     let inputIds_f= [];
     let inputIds_ZL2_real= [];
@@ -50,7 +49,7 @@ document.addEventListener("readystatechange", () => {
       tbody.replaceChildren(""); 
     });
     
-    let f_n=1; // number of f
+    let f_n=1;
     const button_f_n= document.getElementById("button_f_n_table");
     button_f_n.addEventListener("click", ()=>{
       tbody.replaceChildren(""); 
@@ -65,10 +64,6 @@ document.addEventListener("readystatechange", () => {
       inputIds_f= table_ids.id_array_f;
       inputIds_ZL2_real= table_ids.id_array_r;
       inputIds_ZL2_imag= table_ids.id_array_x;
-    // console.log("inputIds_f[0]:", inputIds_f[0]);
-    // const html_el=document.getElementById(inputIds_f[0]);
-    // html_el.focus({preventScroll:false,focusVisible:true}) ;
-      mutation.input_f1_mut(id);
     });//end of frequences table
     
     const tbody_stages= document.getElementById("stagesTableBody");

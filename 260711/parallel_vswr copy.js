@@ -4,12 +4,27 @@ import { timenow } from './timenow.js';
 import { f1 } from './vswr1_db1.js'
 import { table_f_n }   from './table_f_n.js';
 import { format1 } from './format1.js';
+import { table_stg_n } from './table_st_n.js';
 document.addEventListener("readystatechange", () => {
     console.log("document.readyState:", document.readyState);
     const explanationArea= document.getElementById("explanation");
     explanationArea.value = `Current readyState: ${document.readyState}\n`;
     // explanationArea.value+= "explanationArea is ready\n";
     // console.clear();
+    const myForm = document.getElementById("vswrForm");
+    // myForm.addEventListener("submit", function(event) {
+    //   event.preventDefault();//stop the refresh
+    //   return false;
+    // });
+    window.addEventListener('keydown',function(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        // if (event.target.tageName === 'INPUT') {
+        //   event.preventDefault();
+        //   return false;
+        // }
+      }
+    });
     const vf=1;
     // let vf=1;
     let inputIds_f= [];
@@ -24,14 +39,16 @@ document.addEventListener("readystatechange", () => {
     let db_array= [];
     let g_array= [];
     
-    const tbody = document.getElementById("frequencyTableBody");
-    tbody.replaceChildren("");
+    // tbody.replaceChildren("");
     const form= document.getElementById("vswrForm");
     const generatorR= document.getElementById("generatorR");
+    
+    const tbody = document.getElementById("frequencyTableBody");
     const frequency_n_input= document.getElementById("frequency_n");
     frequency_n_input.addEventListener("input", ()=>{
       tbody.replaceChildren(""); 
     });
+    
     let f_n=1;
     const button_f_n= document.getElementById("button_f_n_table");
     button_f_n.addEventListener("click", ()=>{
@@ -47,8 +64,30 @@ document.addEventListener("readystatechange", () => {
       inputIds_f= table_ids.id_array_f;
       inputIds_ZL2_real= table_ids.id_array_r;
       inputIds_ZL2_imag= table_ids.id_array_x;
-    });
+    });//end of frequences table
     
+    const tbody_stages= document.getElementById("stagesTableBody");
+    const stages_n_input= document.getElementById("table_n");
+    stages_n_input.addEventListener("input", ()=> {
+      tbody_stages.replaceChildren("");
+    });
+    let stg_n=1;
+    const button_stg_n= document.getElementById("add_stages");
+    button_stg_n.addEventListener("click", ()=> {
+      tbody_stages.replaceChildren("");
+      stg_n= parseInt(stages_n_input.value, 10);
+      console.log("button_stg_n was clicked; stg_n=", stg_n);
+      const table_stg_ids= table_stg_n.addRows(
+        "stagesTableBody",
+        stg_n,
+        "stage",
+        "rmin",
+        "rmax",
+        "lmin",
+        "lmax"
+      );
+    });
+
     // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
     const statusIndicator= document.getElementById("statusIndicator");
@@ -82,7 +121,7 @@ document.addEventListener("readystatechange", () => {
           +value.toFixed(3): "NaN";
     }
 //lines array_r_min[nst, nrmin]=
-    const n_stages= 3;
+    const n_stages= 1;
     const n_l= 2;
     let id_rmin=[];
     let id_rmax=[];
@@ -115,15 +154,15 @@ document.addEventListener("readystatechange", () => {
       }
     }
     
-    console.log("id_rmin11",id_rmin[0][0]," id_rmin12=",id_rmin[0][1]);
-    console.log("id_lmin11",id_lmin[0][0]," id_lmin12=",id_lmin[0][1]);
-    const line1_R= document.getElementById(id_rmin[0][0]);
-    const line1_L= document.getElementById(id_lmin[0][0]);
-    const line2_R= document.getElementById(id_rmin[0][1]);
-    const line2_L= document.getElementById(id_lmin[0][1]);
+    console.log("id_rmin11",id_rmin[0][0]," id_lmin11=",id_lmin[0][0]);
+    console.log("id_rmin12",id_lmin[0][1]," id_lmin12=",id_lmin[0][1]);
+    // const line1_R= document.getElementById(id_rmin[0][0]);
+    // const line1_L= document.getElementById(id_lmin[0][0]);
+    // const line2_R= document.getElementById(id_rmin[0][1]);
+    // const line2_L= document.getElementById(id_lmin[0][1]);
     
     function updateResult() {
-    console.clear();
+    // console.clear();
       try {
         const Z0=  parseFloat(generatorR.value);
         // const f_n= parseInt(frequency_n_input.value,10);
@@ -136,8 +175,14 @@ document.addEventListener("readystatechange", () => {
           f_array[i]= parseFloat(frequencyInput.value);
           ZL2_real_array[i]= parseFloat(load_real.value);
           ZL2_imag_array[i]= parseFloat(load_imag.value);
+          console.log(`updateResult; i= ${i};ZL2real=${ZL2_real_array[i]}`);
         } 
-       
+        // console.log("id_rmin11",id_rmin[0][0]," id_rmin12=",id_rmin[0][1]);
+        // console.log("id_lmin11",id_lmin[0][0]," id_lmin12=",id_lmin[0][1]);
+        const line1_R= document.getElementById(id_rmin[0][0]);
+        const line1_L= document.getElementById(id_lmin[0][0]);
+        const line2_R= document.getElementById(id_rmin[0][1]);
+        const line2_L= document.getElementById(id_lmin[0][1]);
         const Z01= parseFloat(line1_R.value);
         const Z02= parseFloat(line2_R.value);
         const length1= parseFloat(line1_L.value);
