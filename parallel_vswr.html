@@ -121,22 +121,23 @@ td  input[type=number] {
             </div>
             <div class="row">
               <div class="six columns inline_inputs">
-                <label for="table_n" style="font-weight:bold;">t_n</label>
+                <label for="stp_n_input" style="font-weight:bold;">
+                    number of steps</label>
                 <input type="number" 
                     min="1" max="10"
-                    id="table_n"
+                    id="stp_n_input"
                     step="1" required >
               </div>
               <div class="six columns inline_inputs">
-                <button id="add_stages" 
-                   class="button-primary">load stages</button>
+                <button id="table_stp" 
+                   class="button-primary">load table of steps</button>
               </div>
             </div>
-            <table id="stagesTable">
-              <caption>stage1 line parameters</caption>
+            <table id="stpTable">
+              <caption>step1 line parameters</caption>
               <thead>
                 <tr >
-                  <th scope="col" rowspan="2" class="vertical">stages</th>
+                  <th scope="col" rowspan="2" class="vertical">steps</th>
                   <th scope="col" rowspan="2" class="vertical">lines</th>
                   <th scope="col" colspan="2">impedance (Ω)</th>
                   <th scope="col" colspan="2">length (mm)</th>
@@ -148,7 +149,7 @@ td  input[type=number] {
                   <th scope="col">max</th>
                 </tr>
               </thead>
-              <tbody id="stagesTableBody">
+              <tbody id="stpTableBody">
                  <tr>
                   <td rowspan="2">1</td>
                   <td>1</td>
@@ -190,9 +191,26 @@ td  input[type=number] {
               </tbody>
             </table>
             <br>
-            <button class="button-primary" 
-              style="margin-top: .1rem;"
-              type="submit">calculate</button>
+            <div class="row">
+              <div class="six columns inline_inputs">
+                <button class="button-primary" 
+                  style="margin-top: .1rem;"
+                  type="submit">calculate
+                </button>
+              </div>
+              <div class="six columns inline_inputs">
+                <!-- <button onclick="window.location.reload();" or -->
+                  <!-- type="reset">reset -->
+                <button onclick="console.clear(); "
+                  style="margin-top: .1rem;"
+                  type="button">clear console
+                </button>
+              </div>
+            </div>
+            
+
+    <!--  console.clear(); -->
+
         </form>
         <br>
         <fieldset>

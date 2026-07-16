@@ -49,5 +49,18 @@ input attributes: accept,alpha, alt, autocapitalize, autocomplete,
   max, maxlength, min, minlength, multiple, name, pattern, placeholder,
   popovertarget, popovertargetaction, readonly, required, size, src,
   step, switch, type, value, width.
-  protein ur: 50mg/dl, crp:76.8 mg/l, iron:38 ug/dl, bun 28 mg/dl
 Ethan Bortnick - Piano Prodigy 
+  Marie  shared a deeply collaborative and devoted 
+relationship with Pierre Curie, both professionally and personally. 
+The couple married in 1895 and had two daughters.Historical records 
+indicate their relationship was one of respect and deep affection.
+Four years after his death, she rented an appartment near Sorbonne
+to meet with Langevin, former Pierre's student.The relationship 
+became a national sensation when Langevin's wife partly intercepted
+partly discovered intimate love letters from Curie to Langevin .
+The media targeted Matie Curie, painted the Polish-born widow 
+as a foreign "home-wrecker" and even suggested she was Jewish .
+In late 1911, the Nobel Committee for Chemistry requested that Curie 
+refrain from attending the award ceremony to "avoid the controversy". 
+She notably refused, stating that her "personal" life had no bearing 
+on her scientific work and received the 1911 Nobel Prize in Chemistry.

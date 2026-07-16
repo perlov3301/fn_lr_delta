@@ -4,30 +4,22 @@ import { timenow } from './timenow.js';
 import { f1 } from './vswr1_db1.js'
 import { table_f_n }   from './table_f_n.js';
 import { format1 } from './format1.js';
-import { table_stg_n } from './table_st_n.js';
+import { table_stp_n } from './table_stp_n.js';
 import  { mutation } from './mutation1.js';
 document.addEventListener("readystatechange", () => {
     console.log("document.readyState:", document.readyState);
     const explanationArea= document.getElementById("explanation");
     explanationArea.value = `Current readyState: ${document.readyState}\n`;
-    // explanationArea.value+= "explanationArea is ready\n";
-    // console.clear();
+    explanationArea.value += `time: ${timenow()}\n`;
+  
     const myForm = document.getElementById("vswrForm");
-    // myForm.addEventListener("submit", function(event) {
-    //   event.preventDefault();//stop the refresh
-    //   return false;
-    // });
     window.addEventListener('keydown',function(event) {
       if (event.key === 'Enter') {
         event.preventDefault();
-        // if (event.target.tageName === 'INPUT') {
-        //   event.preventDefault();
-        //   return false;
-        // }
       }
     });
     const vf=1; // Eeff =1 
-    // let vf=1;
+    
     let inputIds_f= [];
     let inputIds_ZL2_real= [];
     let inputIds_ZL2_imag= [];
@@ -40,7 +32,6 @@ document.addEventListener("readystatechange", () => {
     let db_array= [];
     let g_array= [];
     
-    // tbody.replaceChildren("");
     const form= document.getElementById("vswrForm");
     const generatorR= document.getElementById("generatorR");
     
@@ -65,68 +56,39 @@ document.addEventListener("readystatechange", () => {
       inputIds_f= table_ids.id_array_f;
       inputIds_ZL2_real= table_ids.id_array_r;
       inputIds_ZL2_imag= table_ids.id_array_x;
-    // console.log("inputIds_f[0]:", inputIds_f[0]);
-    // const html_el=document.getElementById(inputIds_f[0]);
-    // html_el.focus({preventScroll:false,focusVisible:true}) ;
-      mutation.input_f1_mut(id);
     });//end of frequences table
     
-    const tbody_stages= document.getElementById("stagesTableBody");
-    const stages_n_input= document.getElementById("table_n");
-    stages_n_input.addEventListener("input", ()=> {
-      tbody_stages.replaceChildren("");
+    const stp_tbody= document.getElementById("stpTableBody");
+    const stp_n_input= document.getElementById("stp_n_input");
+    stp_n_input.addEventListener("input", ()=> {
+      stp_tbody.replaceChildren("");
     });
-    let stg_n=1;
-    const button_stg_n= document.getElementById("add_stages");
-    button_stg_n.addEventListener("click", ()=> {
-      tbody_stages.replaceChildren("");
-      stg_n= parseInt(stages_n_input.value, 10);
-      console.log("button_stg_n was clicked; stg_n=", stg_n);
-      const table_stg_ids= table_stg_n.addRows(
-        "stagesTableBody",
-        stg_n,
-        "stage",
-        "rmin",
-        "rmax",
-        "lmin",
-        "lmax"
+    let stp_n=1;
+    const button_stp_n= document.getElementById("table_stp");
+    button_stp_n.addEventListener("click", ()=> {
+      stp_tbody.replaceChildren("");
+      stp_n= parseInt(stp_n_input.value, 10); 
+      console.log("button_stp_n was clicked; stp_n=", stp_n); 
+      const table_stp_ids= table_stp_n.addRows(
+        "stpTableBody",
+        stp_n, 
+        "Rmin",
+        "Rmax",
+        "Lmin",
+        "Lmax"
       );
     });
 
-    // const resultDiv= document.getElementById("result");
     const result_vswr= document.getElementById("result_vswr");
     const statusIndicator= document.getElementById("statusIndicator");
 
     statusIndicator.replaceChildren("ready");
     let currentState= "ready";
-    function setState(state) {
-      // currentState= state;
-      // let captions=[];
-      // captions[0]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // captions[1]= {
-      //   ready: "ready for input",
-      //   modified: "Input changed",
-      //   submitted: "Calculated",
-      //   calculatedZin: "Zin was calculated",
-      //   error_calculating: "error calculating Zin or VSWR",
-      //   calculatedVSWR: "VSWR was calculated",
-      // };
-      // statusIndicator.textContent= captions[state] || state;
-      // statusIndicator.className= `status-indicator ${state}`;
-    }
+    
     function formatNumber(value) {
       return Number.isFinite(value) ? 
           +value.toFixed(3): "NaN";
     }
-//lines array_r_min[nst, nrmin]=
-    const n_stages= 1;
     const n_l= 2;
     let id_rmin=[];
     let id_rmax=[];
@@ -136,9 +98,9 @@ document.addEventListener("readystatechange", () => {
     let r_max= [];
     let l_min= [];
     let l_max= [];
-    r_min = Array.from({ length: n_stages }, ()=> Array(n_l).fill(0));
+    r_min = Array.from({ length: stp_n }, ()=> Array(n_l).fill(0)); 
     console.log("array r_min:", r_min);
-    for (let i= 0; i< n_stages; i++) {
+    for (let i= 0; i< stp_n; i++) { 
       id_rmin[i]= [];
       id_rmax[i]= [];
       id_lmin[i]= [];
@@ -170,7 +132,6 @@ document.addEventListener("readystatechange", () => {
     // console.clear();
       try {
         const Z0=  parseFloat(generatorR.value);
-        // const f_n= parseInt(frequency_n_input.value,10);
         console.log("updateResult; Z0:", Z0, " f_n:", f_n);
 
         for (let i=0; i< f_n; i++) {
@@ -232,35 +193,14 @@ document.addEventListener("readystatechange", () => {
       } catch (error) {
         result_vswr.textContent = "parallel_vswr;Error of calculations .";
         explanationArea.value = error.message;
-        setState("updateResult;error_calculating");
       }
-    }
-    //end of updateResult
-
-    function markModified() {
-      if (currentState !== "modified") { // setState("modified");
-      } 
-    }
-    function markSubmitted() {
-      if (currentState == "submitted") {}
-        
-    }
-
-    // generatorR.addEventListener("input", markModified);
-    // frequency1Input.addEventListener("input", markModified);
-    // load_real1.addEventListener("input", markModified);
-    // load_imag1.addEventListener("input", markModified);
-    // line1_R.addEventListener("input", markModified);
-    // line1_L.addEventListener("input", markModified);
-    // line2_R.addEventListener("input", markModified);
-    // line2_L.addEventListener("input", markModified);
-
-
+    } //end of updateResult
+    
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       updateResult();
     });
 
-    setState(`time now: ${timenow()}; ready for input `);
+    // setState(`time now: ${timenow()}; ready for input `);
 });
 
