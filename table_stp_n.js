@@ -7,8 +7,10 @@ class table_stp_n {
       base_lmin,
       base_lmax
     ) {
-      const tbody= document.getElementById(id);
- 
+        const tbody= document.getElementById(id);
+        for (let i=1; i<=stp_n; i++) {
+          
+        }
         const rowHTML= `
         <tr>
           <td rowspan="2">1</td>
