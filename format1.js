@@ -5,8 +5,8 @@ class format1 {
  */
     static fvswr(a) {
         let vswr;
-        if (a < 2)               { vswr= +a.toFixed(3); } 
-          else if (a>=2 && a<6)  { vswr= +a.toFixed(2); }
+        if (a < 1.7)               { vswr= +a.toFixed(3); } 
+          else if (a>=1.7 && a<6)  { vswr= +a.toFixed(2); }
           else if (a>=6 && a<24) { vswr= +a.toFixed(1); }
           else                   { vswr= +a.toFixed(0); }  
         return vswr;       
