@@ -1,14 +1,16 @@
-class table_stg_n {
+class table_stp_n {
     static addRows(
-      id="stagesTableBody",
-      stg_n,
+      id="stpTableBody",
+      stp_n,
       base_rmin,
       base_rmax,
       base_lmin,
       base_lmax
     ) {
-      const tbody= document.getElementById(id);
- 
+        const tbody= document.getElementById(id);
+        for (let i=1; i<=stp_n; i++) {
+          
+        }
         const rowHTML= `
         <tr>
           <td rowspan="2">1</td>
@@ -57,12 +59,6 @@ class table_stg_n {
     
   
   
-  export { table_stg_n };
+  export { table_stp_n };
   
-  // table.insertRow(-1);
-  //     const cell1 = newRow.insertCell(0);
-  //     const cell2 = newRow.insertCell(1);
-  //     const cell3 = newRow.insertCell(2);
-  //     cell1.textContent = `frequency`;
-  //     cell2.textContent = `load_real`;
-  //     cell3.textContent = `load_imag`;
+  
