@@ -1,7 +1,7 @@
 import { inputZ } from './parallel_zin.js';
 import { calculate } from './calculateVSWR.js';
 import { Exm_array } from './exm_array.js';
-
+import { LineLR } from './line_rl.js'
 
 
 class f1
@@ -27,27 +27,26 @@ class f1
         vf = 1.0
     ) 
     {
-        const line1_R= document.getElementById(id_rmin[0][0]);
-        const line1_L= document.getElementById(id_lmin[0][0]);
-        const line2_R= document.getElementById(id_rmin[0][1]);
-        const line2_L= document.getElementById(id_lmin[0][1]);
-        const Z01= parseFloat(line1_R.value);
-        const Z02= parseFloat(line2_R.value);
-        const length1= parseFloat(line1_L.value);
-        const length2= parseFloat(line2_L.value);
-        console.log("updateResult; Z01:", Z01, " length1:", length1);
-        console.log("updateResult; Z02:", Z02, " length2:", length2);
+      //   const line1_R= document.getElementById(id_rmin[0][0]);
+      //   const line1_L= document.getElementById(id_lmin[0][0]);
+      //   const line2_R= document.getElementById(id_rmin[0][1]);
+      //   const line2_L= document.getElementById(id_lmin[0][1]);
+      //   const Z01= parseFloat(line1_R.value);
+      //   const Z02= parseFloat(line2_R.value);
+      //   const length1= parseFloat(line1_L.value);
+      //   const length2= parseFloat(line2_L.value);
+      //   console.log("vswr1_db1; Z01:", Z01, " length1:", length1);
+      //   console.log("vswr1_db1; Z02:", Z02, " length2:", length2);
         if (Number.isNaN(Z0) || Number.isNaN(frequency) || 
-            Number.isNaN(Z01) || Number.isNaN(Z02) || 
-            Number.isNaN(length1) || Number.isNaN(length2) || 
             Number.isNaN(ZL2_real) || Number.isNaN(ZL2_imag) ) {
-            throw new Error( "vswr_db1js;enter valid numeric values for all inputs.");
+            throw new Error( "vswr_db1js;enter valid numeric values for Z0 & frequencies.");
        }
         // const grid= [
         //   ['A', 'B'],
         //   ['C', 'D']
         // ];
         // Exm_array.processGrid(grid);
+        const {Z01, Z02, length1, length2} = LineLR.line1_lr(id_rmin, id_rmax, id_lmin, id_lmax);
         const data = inputZ.parallelBranchesImpedance( // mm, MHz, load
           Z01,Z02, //ro of lines
           length1, length2, //mm length of lines
