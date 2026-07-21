@@ -21,7 +21,8 @@ class f1
  */
     static vswr1_db1(
       Z0, 
-      frequency, ZL2_real, ZL2_imag,
+      frequency, 
+      Load_real, Load_imag, // load for strip 2
       // id_rmin, id_rmax, id_lmin, id_lmax,
       // Z01, Z02, length1, length2,
       vf = 1.0,
@@ -38,7 +39,7 @@ class f1
       let l_min= [];
       let l_max= [];
       // r_min = Array.from({ length: stp_n }, ()=> Array(n_l).fill(0)); 
-      // console.log("array r_min:", r_min);
+      // console.log("vswe1_db1js; array r_min:", r_min);
       for (let i= 0; i< stp_n; i++) { 
         id_rmin[i]= [];
         id_rmax[i]= [];
@@ -55,36 +56,38 @@ class f1
           id_lmax[i][j]="Lmax"+(i+1).toString()+(j+1).toString();
         }
       }
-      console.log("id_rmin11",id_rmin[0][0]," id_lmin11=",id_lmin[0][0]);
-      console.log("id_rmin12",id_lmin[0][1]," id_lmin12=",id_lmin[0][1]);
-      //   const line1_R= document.getElementById(id_rmin[0][0]);
-      //   const line1_L= document.getElementById(id_lmin[0][0]);
-      //   const line2_R= document.getElementById(id_rmin[0][1]);
-      //   const line2_L= document.getElementById(id_lmin[0][1]);
-      //   const Z01= parseFloat(line1_R.value);
-      //   const Z02= parseFloat(line2_R.value);
-      //   const length1= parseFloat(line1_L.value);
-      //   const length2= parseFloat(line2_L.value);
-      //   console.log("vswr1_db1; Z01:", Z01, " length1:", length1);
-      //   console.log("vswr1_db1; Z02:", Z02, " length2:", length2);
+      //  console.log("id_rmin11",id_rmin[0][0]," id_lmin11=",id_lmin[0][0]);
+      //  console.log("id_rmin12",id_rmin[0][1]," id_lmin12=",id_lmin[0][1]);
+     
         if (Number.isNaN(Z0) || Number.isNaN(frequency) || 
-            Number.isNaN(ZL2_real) || Number.isNaN(ZL2_imag) ) {
-            throw new Error( "vswr_db1js;enter valid numeric values for Z0 & frequencies.");
+            Number.isNaN(Load_real) || Number.isNaN(Load_imag) ) {
+            throw new Error( "vswr_db1js;enter valid numeric values for Z0 & Load.");
        }
-        // const grid= [
-        //   ['A', 'B'],
-        //   ['C', 'D']
-        // ];
-        // Exm_array.processGrid(grid);
+       let ZL2_real=0;
+       let ZL2_imag=0;
+       let data={};
+       console.log("vswr1; Load real:", Load_real, " imag:", Load_imag);
+       for (let i=0; i<stp_n;i++) {
+        console.log("vswr1; i=", i);
         const {Z01, Z02, length1, length2} = LineLR
-          .line1_lr(id_rmin, id_rmax, id_lmin, id_lmax);
-        const data = inputZ.parallelBranchesImpedance( // mm, MHz, load
+          .line1_lr(id_rmin, id_rmax, id_lmin, id_lmax,i);
+        if (i==0) {
+        console.log("vswr1;if=0; i=", i);
+            ZL2_real= Load_real;
+            ZL2_imag= Load_imag;
+        } else {   
+         console.log("vswr1; else; i=", i);
+          ZL2_real=data.Zin_parallel.real;
+          ZL2_imag=data.Zin_parallel.imag;
+        }
+        data = inputZ.parallelBranchesImpedance( // mm, MHz, load
           Z01,Z02, //ro of lines
           length1, length2, //mm length of lines
           ZL2_real, ZL2_imag, // Load for branch 2
           frequency, vf
-        );
-        
+        );      
+       }// end of for
+      console.log("vswr1;after for");
       const vswrData= calculate.calculateVSWR( // not dependent on frequency and Load
         Z0, 
         data.Zin_parallel.real, 
@@ -103,3 +106,13 @@ class f1
     }
 }
 export {f1};
+ //   const line1_R= document.getElementById(id_rmin[0][0]);
+      //   const line1_L= document.getElementById(id_lmin[0][0]);
+      //   const line2_R= document.getElementById(id_rmin[0][1]);
+      //   const line2_L= document.getElementById(id_lmin[0][1]);
+      //   const Z01= parseFloat(line1_R.value);
+      //   const Z02= parseFloat(line2_R.value);
+      //   const length1= parseFloat(line1_L.value);
+      //   const length2= parseFloat(line2_L.value);
+      //   console.log("vswr1_db1; Z01:", Z01, " length1:", length1);
+      //   console.log("vswr1_db1; Z02:", Z02, " length2:", length2);
